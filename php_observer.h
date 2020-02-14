@@ -1,5 +1,3 @@
-/* observer extension for PHP (c) 2020 Sammy Kaye Powers <sammyk@php.net> */
-
 #ifndef PHP_OBSERVER_H
 # define PHP_OBSERVER_H
 

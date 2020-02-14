@@ -1,5 +1,3 @@
-/* observer extension for PHP (c) 2020 Sammy Kaye Powers <sammyk@php.net> */
-
 #ifdef HAVE_CONFIG_H
 # include "config.h"
 #endif
