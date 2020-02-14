@@ -12,4 +12,14 @@ extern zend_module_entry observer_module_entry;
 ZEND_TSRMLS_CACHE_EXTERN()
 # endif
 
+ZEND_BEGIN_MODULE_GLOBALS(observer)
+	int instrument;
+ZEND_END_MODULE_GLOBALS(observer)
+
+#ifdef ZTS
+#define OBSERVER_G(v) TSRMG(observer_globals_id, zend_observer_globals *, v)
+#else
+#define OBSERVER_G(v) (observer_globals.v)
+#endif
+
 #endif	/* PHP_OBSERVER_H */

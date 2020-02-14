@@ -1,12 +1,28 @@
 --TEST--
-Check if observer is loaded
+Basic functionality of the instrumentation hooks
 --SKIPIF--
 <?php
 if (!extension_loaded('observer')) die('skip: observer extension required');
 ?>
+--INI--
+observer.instrument=1
 --FILE--
 <?php
-echo 'The extension "observer" is available';
+function foo() {
+    return 42;
+}
+
+var_dump(foo());
+var_dump(array_sum([111, 111, 111]));
 ?>
 --EXPECT--
-The extension "observer" is available
+[BEGIN foo()]
+[END foo()]
+[BEGIN var_dump()]
+int(42)
+[END var_dump()]
+[BEGIN array_sum()]
+[END array_sum()]
+[BEGIN var_dump()]
+int(333)
+[END var_dump()]
