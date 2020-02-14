@@ -19,7 +19,7 @@ static void observer_end(zend_execute_data *ex) {
 
 static zend_instrument_fns observer_should_instrument(zend_function *func) {
 	zend_instrument_fns fns = {NULL, NULL};
-	if (OBSERVER_G(instrument) == 0) {
+	if (OBSERVER_G(instrument) == 0 || !func->common.function_name) {
 		return fns;
 	}
 	fns.begin = observer_begin;
