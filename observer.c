@@ -13,18 +13,19 @@ static void observer_begin(zend_execute_data *ex) {
 	php_printf("[BEGIN %s()]\n", ZSTR_VAL(ex->func->common.function_name));
 }
 
-static void observer_end(zend_execute_data *ex) {
+static void observer_end(zend_execute_data *ex/*, zval *return_value*/) {
 	php_printf("[END %s()]\n", ZSTR_VAL(ex->func->common.function_name));
 }
 
-static zend_instrument_fns observer_should_instrument(zend_function *func) {
-	zend_instrument_fns fns = {NULL, NULL};
+// Runs once per zend_function on its first call
+static zend_instrument_handlers observer_instrument(zend_function *func) {
+	zend_instrument_handlers handlers = {NULL, NULL};
 	if (OBSERVER_G(instrument) == 0 || !func->common.function_name) {
-		return fns;
+		return handlers; // I have no handlers for this function
 	}
-	fns.begin = observer_begin;
-	fns.end = observer_end;
-	return fns;
+	handlers.begin = observer_begin;
+	handlers.end = observer_end;
+	return handlers; // I have handlers for this function
 }
 
 static void php_observer_init_globals(zend_observer_globals *observer_globals)
@@ -40,7 +41,7 @@ static PHP_MINIT_FUNCTION(observer)
 {
 	ZEND_INIT_MODULE_GLOBALS(observer, php_observer_init_globals, NULL);
 	REGISTER_INI_ENTRIES();
-	zend_register_instrumentation(observer_should_instrument);
+	zend_instrument_register(observer_instrument);
 	return SUCCESS;
 }
 
