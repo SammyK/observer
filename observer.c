@@ -13,8 +13,8 @@ static void observer_begin(zend_execute_data *ex) {
 	php_printf("[BEGIN %s()]\n", ZSTR_VAL(ex->func->common.function_name));
 }
 
-static void observer_end(zend_execute_data *ex/*, zval *return_value*/) {
-	php_printf("[END %s()]\n", ZSTR_VAL(ex->func->common.function_name));
+static void observer_end(zend_execute_data *ex, zval *return_value) {
+	php_printf("[END %s(): %s]\n", ZSTR_VAL(ex->func->common.function_name), zend_zval_type_name(return_value));
 }
 
 // Runs once per zend_function on its first call

@@ -22,5 +22,5 @@ echo 'You should not see this.';
 [BEGIN assert()]
 
 Warning: assert(): assert(false) failed in %s on line %d
-[END assert()]
-[END foo()]
+[END assert(): null]
+[END foo(): null]

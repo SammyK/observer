@@ -22,10 +22,10 @@ function foo() {
 ?>
 --EXPECT--
 [BEGIN register_shutdown_function()]
-[END register_shutdown_function()]
+[END register_shutdown_function(): null]
 [BEGIN {closure}()]
 Shutdown
 [BEGIN foo()]
 Exiting
-[END foo()]
-[END {closure}()]
+[END foo(): null]
+[END {closure}(): null]

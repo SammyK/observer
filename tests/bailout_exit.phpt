@@ -18,4 +18,4 @@ echo 'You should not see this.';
 ?>
 --EXPECTF--
 [BEGIN foo()]
-[END foo()]
+[END foo(): null]

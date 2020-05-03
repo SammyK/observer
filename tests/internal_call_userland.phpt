@@ -21,29 +21,29 @@ var_dump($doubles);
 ?>
 --EXPECT--
 [BEGIN range()]
-[END range()]
+[END range(): array]
 [BEGIN array_map()]
 [BEGIN double()]
-[END double()]
+[END double(): int]
 [BEGIN double()]
-[END double()]
+[END double(): int]
 [BEGIN double()]
-[END double()]
+[END double(): int]
 [BEGIN double()]
-[END double()]
+[END double(): int]
 [BEGIN double()]
-[END double()]
+[END double(): int]
 [BEGIN double()]
-[END double()]
+[END double(): int]
 [BEGIN double()]
-[END double()]
+[END double(): int]
 [BEGIN double()]
-[END double()]
+[END double(): int]
 [BEGIN double()]
-[END double()]
+[END double(): int]
 [BEGIN double()]
-[END double()]
-[END array_map()]
+[END double(): int]
+[END array_map(): array]
 [BEGIN var_dump()]
 array(10) {
   [0]=>
@@ -67,4 +67,4 @@ array(10) {
   [9]=>
   int(20)
 }
-[END var_dump()]
+[END var_dump(): null]
