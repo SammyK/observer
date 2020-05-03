@@ -18,8 +18,8 @@ static void observer_end(zend_execute_data *ex/*, zval *return_value*/) {
 }
 
 // Runs once per zend_function on its first call
-static zend_instrument_handlers observer_instrument(zend_function *func) {
-	zend_instrument_handlers handlers = {NULL, NULL};
+static zend_instrument_fcall observer_instrument(zend_function *func) {
+	zend_instrument_fcall handlers = {NULL, NULL};
 	if (OBSERVER_G(instrument) == 0 || !func->common.function_name) {
 		return handlers; // I have no handlers for this function
 	}
@@ -41,7 +41,7 @@ static PHP_MINIT_FUNCTION(observer)
 {
 	ZEND_INIT_MODULE_GLOBALS(observer, php_observer_init_globals, NULL);
 	REGISTER_INI_ENTRIES();
-	zend_instrument_register(observer_instrument);
+	zend_instrument_fcall_register(observer_instrument);
 	return SUCCESS;
 }
 
