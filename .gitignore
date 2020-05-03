@@ -8,6 +8,7 @@ build
 config.guess
 config.h
 config.h.in
+config.h.in~
 config.log
 config.nice
 config.status
@@ -27,9 +28,9 @@ missing
 mkinstalldirs
 modules
 run-tests.php
-tests/*/*.diff
-tests/*/*.out
-tests/*/*.php
-tests/*/*.exp
-tests/*/*.log
-tests/*/*.sh
+tests/*.diff
+tests/*.out
+tests/*.php
+tests/*.exp
+tests/*.log
+tests/*.sh
