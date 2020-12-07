@@ -1,6 +1,6 @@
 # Observer PHP 8 Extension
 
-This is a PHP 8 extension that demonstrates the observer API.
+This is a PoC PHP 8 extension that demonstrates the observer API.
 
 ```bash
 $ phpize \
