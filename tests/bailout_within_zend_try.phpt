@@ -21,8 +21,6 @@ function foo() {
 }
 ?>
 --EXPECT--
-[BEGIN register_shutdown_function()]
-[END register_shutdown_function(): null]
 [BEGIN {closure}()]
 Shutdown
 [BEGIN foo()]

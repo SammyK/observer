@@ -18,8 +18,6 @@ echo 'You should not see this.';
 ?>
 --EXPECTF--
 [BEGIN foo()]
-[BEGIN trigger_error(): bool]
 
 Fatal error: Foo error in %s on line %d
-[END trigger_error()]
 [END foo(): null]
