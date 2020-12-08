@@ -19,8 +19,6 @@ echo 'You should not see this.';
 ?>
 --EXPECTF--
 [BEGIN foo()]
-[BEGIN str_repeat()]
 
 Fatal error: Allowed memory size of 2097152 bytes exhausted%s(tried to allocate %d bytes) in %s on line %d
-[END str_repeat(): null]
 [END foo(): null]

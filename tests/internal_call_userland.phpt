@@ -20,9 +20,6 @@ $doubles = array_map('double', range(1, 10));
 var_dump($doubles);
 ?>
 --EXPECT--
-[BEGIN range()]
-[END range(): array]
-[BEGIN array_map()]
 [BEGIN double()]
 [END double(): int]
 [BEGIN double()]
@@ -43,8 +40,6 @@ var_dump($doubles);
 [END double(): int]
 [BEGIN double()]
 [END double(): int]
-[END array_map(): array]
-[BEGIN var_dump()]
 array(10) {
   [0]=>
   int(2)
@@ -67,4 +62,3 @@ array(10) {
   [9]=>
   int(20)
 }
-[END var_dump(): null]

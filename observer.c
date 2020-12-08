@@ -4,23 +4,25 @@
 
 #include "php.h"
 #include "ext/standard/info.h"
-#include "Zend/zend_instrument.h"
+#include "Zend/zend_observer.h"
 #include "php_observer.h"
 
 ZEND_DECLARE_MODULE_GLOBALS(observer)
 
-static void observer_begin(zend_execute_data *ex) {
-	php_printf("[BEGIN %s()]\n", ZSTR_VAL(ex->func->common.function_name));
+static void observer_begin(zend_execute_data *execute_data) {
+	php_printf("[BEGIN %s()]\n", ZSTR_VAL(execute_data->func->common.function_name));
 }
 
-static void observer_end(zend_execute_data *ex, zval *return_value) {
-	php_printf("[END %s(): %s]\n", ZSTR_VAL(ex->func->common.function_name), zend_zval_type_name(return_value));
+static void observer_end(zend_execute_data *execute_data, zval *return_value) {
+	php_printf("[END %s(): %s]\n", ZSTR_VAL(execute_data->func->common.function_name), return_value ? zend_zval_type_name(return_value) : "null");
 }
 
 // Runs once per zend_function on its first call
-static zend_instrument_fcall observer_instrument(zend_function *func) {
-	zend_instrument_fcall handlers = {NULL, NULL};
-	if (OBSERVER_G(instrument) == 0 || !func->common.function_name) {
+static zend_observer_fcall_handlers observer_instrument(zend_execute_data *execute_data) {
+	zend_observer_fcall_handlers handlers = {NULL, NULL};
+	if (OBSERVER_G(instrument) == 0 ||
+		!execute_data->func ||
+		!execute_data->func->common.function_name) {
 		return handlers; // I have no handlers for this function
 	}
 	handlers.begin = observer_begin;
@@ -41,7 +43,7 @@ static PHP_MINIT_FUNCTION(observer)
 {
 	ZEND_INIT_MODULE_GLOBALS(observer, php_observer_init_globals, NULL);
 	REGISTER_INI_ENTRIES();
-	zend_instrument_fcall_register(observer_instrument);
+	zend_observer_fcall_register(observer_instrument);
 	return SUCCESS;
 }
 

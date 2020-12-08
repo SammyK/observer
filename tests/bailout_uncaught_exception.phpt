@@ -19,13 +19,7 @@ echo 'You should not see this.';
 ?>
 --EXPECTF--
 [BEGIN foo()]
-[BEGIN __construct()]
-[END __construct(): null]
 [END foo(): null]
-[BEGIN __toString()]
-[BEGIN getTraceAsString()]
-[END getTraceAsString(): string]
-[END __toString(): string]
 
 Fatal error: Uncaught Exception: Foo error in %s:%d
 Stack trace:
