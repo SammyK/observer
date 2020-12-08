@@ -13,10 +13,8 @@ function foo() {
 }
 
 var_dump(foo());
-var_dump(array_sum([111, 111, 111]));
 ?>
 --EXPECT--
 [BEGIN foo()]
 [END foo(): int]
 int(42)
-int(333)
